@@ -20,3 +20,9 @@ m = Modo()
 mi_partida = Partida(j,m,col_preguntas)
 
 mi_partida.iniciar()
+
+preguntas = mi_partida.preguntas
+for preg in preguntas:
+    print(preg.cuerpo)
+    for resp in preg.respuestas:
+        print(resp.cuerpo)
