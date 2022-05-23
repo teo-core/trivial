@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+
+{%block title%}Home{%endblock%}
+{%block cabecera%}
+<div class="box">
+<h2 class="title is-2">Trivial: Juego de preguntas y respuestas</h2>
+</div>
+{%endblock%}
+
+{%block content%}
+<div class="hero is-success is-small resp-correcta">
+  <div class="hero-body">
+      <h2 class="title">Introduzca su nombre de usuario y pulse el botón para comenzar la partida.</h2>
+  </div>
+</div> 
+
+
+<form class="form-horizontal" action="/nueva" method="post">
+  <div class="field">
+    <label class="label" for="nombre">Nombre:</label>
+    <div class="control">
+      <input required type="text" id="jugador" name="jugador" value="" class="input ">
+
+    </div>
+  </div>  
+  <div class="field is-grouped is-grouped-right">
+    <div class="control">
+      <input type="submit" class="button is-success" value="Enviar">
+    </div>
+  </div>
+
+</form>
+
+    
+
+
+{%endblock%}

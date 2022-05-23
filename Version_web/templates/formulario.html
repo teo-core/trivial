@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{%block title%}Preguntas{%endblock%}
+
+{%block cabecera%}
+<h2 class="title is-2">Jugador: {{jugador}}</h2>
+{%endblock%}
+
+{%block content%}
+
+<form class="form-horizontal" action="/save" method="POST">
+	<fieldset>
+		<div class="control">
+			<input type="hidden" name="jugador" value="{{jugador}}">
+			{% set cnt_pregunta = namespace(value=1)%}
+			{%for preg in preguntas%}
+			{% set cnt_respuesta = namespace(value=1) %}
+			<input type="hidden" name="pregunta{{preg.id}}" value="{{preg.id}}">
+			<div class="hero is-primary is-small pregunta">
+				<div class="title is-4"><span
+						class="tag is-dark is-medium">{{cnt_pregunta.value}}/{{preguntas|length}}</span>{{preg.cuerpo}}
+				</div>
+			</div><br>
+			{% set cnt_pregunta.value = cnt_pregunta.value + 1%}
+			{% for resp in preg.respuestas %}
+			<div class="subtitle ">
+				<label class="radio" for="{{resp.id}}">
+					<input required type="radio" id="{{resp.id}}" name="pregunta{{preg.id}}" value="{{resp.id}}">
+					&nbsp;{{cnt_respuesta.value}}: {{resp.cuerpo}}
+				</label>
+			</div>
+			{% set cnt_respuesta.value = cnt_respuesta.value + 1 %}
+			{%endfor%}
+			{%endfor%}
+		</div>
+		<div class="field is-grouped is-grouped-right">
+			<div class="control">
+				<input type="submit" class="button is-success" value="Enviar">
+				<a class="button  is-warning" href="/">Cancelar</a>
+			</div>
+		</div>
+
+	</fieldset>
+</form>
+{%endblock%}

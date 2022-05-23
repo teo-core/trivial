@@ -15,3 +15,4 @@ class Respuesta():
     @property
     def correcta(self):
         return self.__correcta
+    
